@@ -7,7 +7,6 @@ import domain.Track;
 import presentation.model.IPlaylistModel;
 import presentation.model.ITrackModel;
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -30,7 +29,7 @@ public class PlaylistViewPageController extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         if(request.getParameter("playlistid") != null) {
-            List<Track> tracks = this.trackModel.getTracksFromPlaylist(Integer.parseInt(request.getParameter("playlistid")));
+            List<Track> tracks = this.trackModel.getAllTracksFromPlaylist(Integer.parseInt(request.getParameter("playlistid")));
             request.setAttribute("all", tracks);
             request.getRequestDispatcher("playlistView.jsp").forward(request, response);
         }

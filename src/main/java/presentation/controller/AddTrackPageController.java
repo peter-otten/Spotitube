@@ -6,7 +6,6 @@ import domain.Track;
 import presentation.model.ITrackModel;
 
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -26,7 +25,7 @@ public class AddTrackPageController extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         if (request.getParameter("playlistid") != null) {
             if (request.getParameter("zoekterm") != null) {
-                List<Track> tracks = trackModel.getTracks(request.getParameter("zoekterm"));
+                List<Track> tracks = trackModel.getAllTracks(request.getParameter("zoekterm"));
                 request.setAttribute("all", tracks);
                 request.getRequestDispatcher("searchresults.jsp").forward(request, response);
             } else  if(request.getParameter("trackid") != null) {

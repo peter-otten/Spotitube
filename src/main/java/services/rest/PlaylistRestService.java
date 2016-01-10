@@ -5,6 +5,7 @@ import datasource.IPlaylistDao;
 import datasource.ITrackDao;
 import domain.Playlist;
 import domain.Track;
+import services.IPlaylistService;
 
 import javax.inject.Singleton;
 import javax.ws.rs.GET;
@@ -15,31 +16,25 @@ import java.util.List;
 
 @Path("/playlists")
 @Singleton
-public class PlaylistRestService {
-    private List<Playlist> playlists;
-    private List<Track> tracks;
+public class PlaylistRestService implements IPlaylistService{
     IPlaylistDao playlistDao;
-    ITrackDao trackDao;
 
-    public PlaylistRestService()
-    {
-    }
-
-    @Inject
-    public void setService(ITrackDao trackDao)
-    {
-        this.trackDao = trackDao;
-    }
     @Inject
     public void setService(IPlaylistDao playlistDao)
     {
         this.playlistDao = playlistDao;
     }
 
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    public List<Playlist> findAll(String owner) {
+        return playlistDao.findAll(owner);
+    }
+
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    public List<Playlist> getJsonItems()  {
-        return null;
+    public void addPlaylist(String name) {
+        playlistDao.addPlaylist(name);
     }
-    }
+}

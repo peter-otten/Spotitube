@@ -14,12 +14,12 @@ public class TrackModel implements ITrackModel {
         this.trackService = trackService;
     }
 
-    public List<Track> getTracks(String zoekterm)
+    public List<Track> getAllTracks(String zoekterm)
     {
         return trackService.getAllTracks(zoekterm);
     }
 
-    public List<Track> getTracksFromPlaylist(int playlistid)
+    public List<Track> getAllTracksFromPlaylist(int playlistid)
     {
         return trackService.getAllTracksFromPlaylist(playlistid);
     }
